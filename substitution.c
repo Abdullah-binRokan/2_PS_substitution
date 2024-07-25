@@ -1,9 +1,16 @@
 #include <cs50.h>
 #include <stdio.h>
 
-int main(void)
+int main(int argc, string argv[])
 {
     // get key
+    printf("argc = %i", argc);
+    // printf("argv[] = %s", argv[]);
+     for (int i = 0; i < argc; i++)
+    {
+        printf("\nargv[%i] : %s", i, argv[i]);
+    }
+    printf("\n");
 
     // validate key
         // if (key != 26 char)
