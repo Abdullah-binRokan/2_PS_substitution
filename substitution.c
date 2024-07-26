@@ -1,4 +1,5 @@
 #include <cs50.h>
+#include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
@@ -6,7 +7,7 @@
 // declare getKey function
 string getKey(string);
 
-// declare getKey function
+// declare validateKey function
 bool validateKey(string);
 
 int main(int argc, string argv[])
@@ -53,7 +54,7 @@ string getKey(string argvKey)
     return key;
 }
 
-// define getKey function
+// define validateKey function
 bool validateKey(string key)
 {
     // check key length
@@ -62,10 +63,16 @@ bool validateKey(string key)
         printf("\nKey must contain 26 characters.\n");
         return false;
     }
-    // if (key has non-alphabetic char)
-        // print corresponding error message and return 1 
-    // if (key has repeated char)
-        // print corresponding error message and return 1
+     
+    for (int i = 0; i < 26; i++)
+    {
+        // check if key has non-alphabetic char
+        if (isalpha(key[i]) == false)
+        {
+            printf("\nKey must contains only alpahbetical characters.\n");
+            return false;
+        }
+    }
 
     return true;
 }
