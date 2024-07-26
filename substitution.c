@@ -72,6 +72,16 @@ bool validateKey(string key)
             printf("\nKey must contains only alpahbetical characters.\n");
             return false;
         }
+
+        // check if key has repeated char
+        for (int j = 25; j > i; j--)
+        {
+            if (key[i] == key[j])
+            {
+                printf("\nKey must not contain repeated character.\n");
+                return false;
+            }
+        }
     }
 
     return true;
