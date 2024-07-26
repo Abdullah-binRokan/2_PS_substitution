@@ -1,8 +1,13 @@
 #include <cs50.h>
+#include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 
 // declare getKey function
 string getKey(string);
+
+// declare getKey function
+bool validateKey(string);
 
 int main(int argc, string argv[])
 {
@@ -16,12 +21,12 @@ int main(int argc, string argv[])
     string key = getKey(argv[1]);
 
     // validate key
-        // if (key != 26 char)
-            // print corresponding error message and return 1 
-        // if (key has non-alphabetic char)
-            // print corresponding error message and return 1 
-        // if (key has repeated char)
-            // print corresponding error message and return 1 
+    bool isValid = validateKey(key);
+    // return 1 to signify error if it isn't a valid key
+    if (isValid == false)
+    {
+        return 1;
+    }
 
     // get plaintext
         // output plaintext: then prompt for a string input
@@ -45,6 +50,22 @@ int main(int argc, string argv[])
 string getKey(string argvKey)
 {
     string key = argvKey;
-    printf("key = %s\n", key);
     return key;
-} 
+}
+
+// define getKey function
+bool validateKey(string key)
+{
+    // check key length
+    if (strlen(key) != 26)
+    {
+        printf("\nKey must contain 26 characters.\n");
+        return false;
+    }
+    // if (key has non-alphabetic char)
+        // print corresponding error message and return 1 
+    // if (key has repeated char)
+        // print corresponding error message and return 1
+
+    return true;
+}
