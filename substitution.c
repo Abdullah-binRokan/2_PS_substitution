@@ -4,11 +4,10 @@
 #include <stdio.h>
 #include <string.h>
 
-// declare getKey function
+// declare the functions
 string getKey(string);
-
-// declare validateKey function
 bool validateKey(string);
+string getPlaintext(void);
 
 int main(int argc, string argv[])
 {
@@ -30,7 +29,8 @@ int main(int argc, string argv[])
     }
 
     // get plaintext
-        // output plaintext: then prompt for a string input
+    string plaintext = getPlaintext();
+    printf("\nPlainText = %s\n", plaintext);
 
     // encipher
         // define ciphertext array
@@ -85,4 +85,11 @@ bool validateKey(string key)
     }
 
     return true;
+}
+
+// define getPlaintext function
+string getPlaintext()
+{
+    string plaintext = get_string("plaintext: ");
+    return plaintext;
 }
