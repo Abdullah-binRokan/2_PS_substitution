@@ -8,7 +8,7 @@
 string getKey(string);
 bool validateKey(string);
 string getPlaintext(void);
-string encipher(string);
+string encipher(string, string);
 
 int main(int argc, string argv[])
 {
@@ -33,7 +33,7 @@ int main(int argc, string argv[])
     string plaintext = getPlaintext();
 
     // encipher the plaintext
-    string ciphertext = encipher(plaintext);
+    string ciphertext = encipher(plaintext, key);
 
     // print ciphertext
 }
@@ -86,12 +86,14 @@ string getPlaintext()
 }
 
 // define encipher function
-string encipher(string plaintext)
+string encipher(string plaintext, string key)
 {
     // define ciphertext array
     char ciphertextArr[26];
     ciphertextArr[0] = 's';
+    key[0] = 'b';
     printf("chipherArr: %c\n", ciphertextArr[0]);
+    printf("key: %c\n", key[0]);
 
     // for each plaintext letter
         // if (letter = non-alphabetic)
