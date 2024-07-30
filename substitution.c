@@ -101,9 +101,18 @@ string encipher(string plaintext, string key)
             ciphertextArr[i] = plaintext[i];
             printf("non-alphabetic: %c\n", plaintext[i]);
         }
-        // else
-            // preserve case
+        else
+        {
+            // preserve case of capitalized & lowercase letters
+            bool isLowercase = false;
+            if (islower(plaintext[i]))
+            {
+                isLowercase = true;
+                printf("isLowercase: %d    letter: %c\n", isLowercase, plaintext[i]);
+            }
             // determine what letter it maps to
             // push it to ciphertext array
+        }
+        
     }
 }
