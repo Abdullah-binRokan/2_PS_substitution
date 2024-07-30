@@ -12,7 +12,7 @@ string encipher(string, string);
 
 int main(int argc, string argv[])
 {
-    // get key (accept only single command-line argument)
+    /* get key (accept only single command-line argument) */
     if (argc != 2)
     {
         printf("Use a single command-line argument without any spacing\n");
@@ -21,7 +21,7 @@ int main(int argc, string argv[])
     }
     string key = getKey(argv[1]);
 
-    // validate key
+    /* validate key */
     bool isValid = validateKey(key);
     // return 1 to signify error if it isn't a valid key
     if (isValid == false)
@@ -29,23 +29,23 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    // get plaintext
+    /* get plaintext */
     string plaintext = getPlaintext();
 
-    // encipher the plaintext
+    /* encipher the plaintext */
     string ciphertext = encipher(plaintext, key);
 
-    // print ciphertext
+    /* print ciphertext */
 }
 
-// define getKey function
+/* define getKey function */
 string getKey(string argvKey)
 {
     string key = argvKey;
     return key;
 }
 
-// define validateKey function
+/* define validateKey function */
 bool validateKey(string key)
 {
     // check key length
@@ -78,14 +78,14 @@ bool validateKey(string key)
     return true;
 }
 
-// define getPlaintext function
+/* define getPlaintext function */
 string getPlaintext()
 {
     string plaintext = get_string("plaintext: ");
     return plaintext;
 }
 
-// define encipher function
+/* define encipher function */
 string encipher(string plaintext, string key)
 {
     // define ciphertext array
@@ -103,7 +103,7 @@ string encipher(string plaintext, string key)
         }
         else
         {
-            // preserve case of capitalized & lowercase letters
+            // keep track of the letter case (capitalized or lowercase)
             bool isLowercase = false;
             if (islower(plaintext[i]))
             {
