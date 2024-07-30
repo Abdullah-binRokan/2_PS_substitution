@@ -90,17 +90,20 @@ string encipher(string plaintext, string key)
 {
     // define ciphertext array
     char ciphertextArr[26];
-    ciphertextArr[0] = 's';
-    key[0] = 'b';
-    printf("chipherArr: %c\n", ciphertextArr[0]);
-    printf("key: %c\n", key[0]);
 
     // for each plaintext letter
-        // if (letter = non-alphabetic)
-            // leave non-alphabetic char as is
+    for (int i = 0; i < strlen(plaintext); i++)
+    {
+        // if char is non-alphabetic leave as is
+        if (isalpha(plaintext[i]) == false)
+        {
             // push it to ciphertext array
+            ciphertextArr[i] = plaintext[i];
+            printf("non-alphabetic: %c\n", plaintext[i]);
+        }
         // else
             // preserve case
             // determine what letter it maps to
             // push it to ciphertext array
+    }
 }
