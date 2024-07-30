@@ -9,6 +9,7 @@ string getKey(string);
 bool validateKey(string);
 string getPlaintext(void);
 string encipher(string, string);
+void printCiphertext(string);
 
 int main(int argc, string argv[])
 {
@@ -36,6 +37,7 @@ int main(int argc, string argv[])
     string ciphertext = encipher(plaintext, key);
 
     /* print ciphertext */
+    printCiphertext(ciphertext);
 }
 
 /* define getKey function */
@@ -123,7 +125,13 @@ string encipher(string plaintext, string key)
             {
                 ciphertextArr[i] = toupper(key[alphabetOrder]);
             }
-            printf("ciphertextArr[%i]: %c\n", i, ciphertextArr[i]);
         }   
     }
+    return ciphertextArr;
+}
+
+/* define printCiphertext function */
+void printCiphertext(string ciphertext)
+{
+    printf("ciphertext:  %s\n", ciphertext);
 }
