@@ -108,11 +108,22 @@ string encipher(string plaintext, string key)
             if (islower(plaintext[i]))
             {
                 isLowercase = true;
-                printf("isLowercase: %d    letter: %c\n", isLowercase, plaintext[i]);
             }
-            // determine what letter it maps to
-            // push it to ciphertext array
-        }
-        
+            
+            // determine which letter it maps to
+            int alphabetOrder = 0;
+            // get alphabetical order by subtracting 65 (ascii table)
+            alphabetOrder = toupper(plaintext[i]) - 65;
+            // push it to ciphertext array while preserving case
+            if (isLowercase)
+            {
+                ciphertextArr[i] = tolower(key[alphabetOrder]);
+            }
+            else
+            {
+                ciphertextArr[i] = toupper(key[alphabetOrder]);
+            }
+            printf("ciphertextArr[%i]: %c\n", i, ciphertextArr[i]);
+        }   
     }
 }
