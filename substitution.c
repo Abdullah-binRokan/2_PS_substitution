@@ -131,4 +131,8 @@ string encipher(string plaintext, string key, char ciphertextArr[26])
 void printCiphertext(string ciphertext)
 {
     printf("ciphertext: %s\n", ciphertext);
+
+    /* when print ciphertext "hre We Aere" there is an exta symbols! "]�..etc"
+       let's check the length of ciphertext to see */  
+    printf("ciphertext Length: %lu\n", strlen(ciphertext));
 }
