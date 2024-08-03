@@ -9,7 +9,7 @@ string getKey(string);
 bool validateKey(string);
 string getPlaintext(void);
 string encipher(string, string, char array[26]);
-void printCiphertext(string);
+void printCiphertext(string, string);
 
 int main(int argc, string argv[])
 {
@@ -38,7 +38,7 @@ int main(int argc, string argv[])
     string ciphertext = encipher(plaintext, key, ciphertextArr);
 
     /* print ciphertext */
-    printCiphertext(ciphertext);
+    printCiphertext(ciphertext, plaintext);
 }
 
 /* define getKey function */
@@ -128,11 +128,16 @@ string encipher(string plaintext, string key, char ciphertextArr[26])
 }
 
 /* define printCiphertext function */
-void printCiphertext(string ciphertext)
+void printCiphertext(string ciphertext, string plaintext)
 {
-    printf("ciphertext: %s\n", ciphertext);
-
-    /* when print ciphertext "hre We Aere" there is an exta symbols! "]�..etc"
-       let's check the length of ciphertext to see */  
-    printf("ciphertext Length: %lu\n", strlen(ciphertext));
+    printf("ciphertext: ");
+    
+    // print the same plaintext num of chars from ciphertext array
+    int plaintextLength = strlent(plaintext);
+    
+    for (int i = 0; i < plaintextLength; i++)
+    {
+        printf("%c",ciphertext[i]);
+    }
+    printf("\n");
 }
