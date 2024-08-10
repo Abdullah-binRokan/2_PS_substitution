@@ -8,7 +8,7 @@
 string getKey(string);
 bool validateKey(string);
 string getPlaintext(void);
-string encipher(string, string, char array[26]);
+string encipher(string, string, char array[]);
 void printCiphertext(string, string);
 
 int main(int argc, string argv[])
@@ -32,9 +32,13 @@ int main(int argc, string argv[])
 
     /* get plaintext */
     string plaintext = getPlaintext();
+    int plaintextLength = strlen(plaintext);
 
     /* encipher the plaintext */
-    char ciphertextArr[26];
+    // one character longer than plaintext to accommodate the null terminator for strings.
+    char ciphertextArr[plaintextLength + 1];
+    // Null-terminate the ciphertext to avoid print garbage values
+    ciphertextArr[plaintextLength] = '\0';
     string ciphertext = encipher(plaintext, key, ciphertextArr);
 
     /* print ciphertext */
@@ -57,7 +61,7 @@ bool validateKey(string key)
         printf("\nKey must contain 26 characters.\n");
         return false;
     }
-     
+
     for (int i = 0; i < 26; i++)
     {
         // check if key has non-alphabetic char
@@ -89,7 +93,7 @@ string getPlaintext()
 }
 
 /* define encipher function */
-string encipher(string plaintext, string key, char ciphertextArr[26])
+string encipher(string plaintext, string key, char ciphertextArr[])
 {
     // for each plaintext letter
     for (int i = 0; i < strlen(plaintext); i++)
@@ -108,7 +112,7 @@ string encipher(string plaintext, string key, char ciphertextArr[26])
             {
                 isLowercase = true;
             }
-            
+
             // determine which letter it maps to
             int alphabetOrder = 0;
             // get alphabetical order by subtracting 65 (ascii table)
@@ -122,7 +126,7 @@ string encipher(string plaintext, string key, char ciphertextArr[26])
             {
                 ciphertextArr[i] = toupper(key[alphabetOrder]);
             }
-        }   
+        }
     }
     return ciphertextArr;
 }
@@ -131,13 +135,11 @@ string encipher(string plaintext, string key, char ciphertextArr[26])
 void printCiphertext(string ciphertext, string plaintext)
 {
     printf("ciphertext: ");
-    
+
     // print the same plaintext num of chars from ciphertext array
-    int plaintextLength = strlent(plaintext);
-    
-    for (int i = 0; i < plaintextLength; i++)
+    for (int i = 0; i < strlen(ciphertext); i++)
     {
-        printf("%c",ciphertext[i]);
+        printf("%c", ciphertext[i]);
     }
     printf("\n");
 }
