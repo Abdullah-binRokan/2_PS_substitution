@@ -8,8 +8,8 @@
 string getKey(string);
 bool validateKey(string);
 string getPlaintext(void);
-string encipher(string, string, char array[]);
-void printCiphertext(string, string);
+void encipher(string, string, char array[]);
+void printCiphertext(char array[]);
 
 int main(int argc, string argv[])
 {
@@ -39,10 +39,10 @@ int main(int argc, string argv[])
     char ciphertextArr[plaintextLength + 1];
     // Null-terminate the ciphertext to avoid print garbage values
     ciphertextArr[plaintextLength] = '\0';
-    string ciphertext = encipher(plaintext, key, ciphertextArr);
+    encipher(plaintext, key, ciphertextArr);
 
     /* print ciphertext */
-    printCiphertext(ciphertext, plaintext);
+    printCiphertext(ciphertextArr);
 }
 
 /* define getKey function */
@@ -65,7 +65,7 @@ bool validateKey(string key)
     for (int i = 0; i < 26; i++)
     {
         // check if key has non-alphabetic char
-        if (isalpha(key[i]) == false)
+        if (!isalpha(key[i]))
         {
             printf("\nKey must contains only alpahbetical characters.\n");
             return false;
@@ -93,13 +93,13 @@ string getPlaintext()
 }
 
 /* define encipher function */
-string encipher(string plaintext, string key, char ciphertextArr[])
+void encipher(string plaintext, string key, char ciphertextArr[])
 {
     // for each plaintext letter
     for (int i = 0; i < strlen(plaintext); i++)
     {
         // if char is non-alphabetic leave as is
-        if (isalpha(plaintext[i]) == false)
+        if (!isalpha(plaintext[i]))
         {
             // push it to ciphertext array
             ciphertextArr[i] = plaintext[i];
@@ -118,28 +118,13 @@ string encipher(string plaintext, string key, char ciphertextArr[])
             // get alphabetical order by subtracting 65 (ascii table)
             alphabetOrder = toupper(plaintext[i]) - 65;
             // push it to ciphertext array while preserving case
-            if (isLowercase)
-            {
-                ciphertextArr[i] = tolower(key[alphabetOrder]);
-            }
-            else
-            {
-                ciphertextArr[i] = toupper(key[alphabetOrder]);
-            }
+            ciphertextArr[i] = isLowercase ? tolower(key[alphabetOrder]) : toupper(key[alphabetOrder]);
         }
     }
-    return ciphertextArr;
 }
 
 /* define printCiphertext function */
-void printCiphertext(string ciphertext, string plaintext)
+void printCiphertext(char ciphertextArr[])
 {
-    printf("ciphertext: ");
-
-    // print the same plaintext num of chars from ciphertext array
-    for (int i = 0; i < strlen(ciphertext); i++)
-    {
-        printf("%c", ciphertext[i]);
-    }
-    printf("\n");
+    printf("ciphertext: %s\n", ciphertextArr);
 }
